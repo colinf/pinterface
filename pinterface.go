@@ -93,7 +93,7 @@ type IUserState interface {
 	IsConfirmed(username string) bool
 	IsLoggedIn(username string) bool
 	Login(w http.ResponseWriter, username string) error
-	Logout(username string)
+	Logout(w http.ResponseWriter, username string)
 	MarkConfirmed(username string)
 	PasswordAlgo() string
 	PasswordHash(username string) (string, error)
@@ -157,5 +157,6 @@ type IPermissions interface {
 	SetDenyFunction(f http.HandlerFunc)
 	SetPublicPath(pathPrefixes []string)
 	SetUserPath(pathPrefixes []string)
+	SetRootIsPublic(isPublic bool)
 	UserState() IUserState
 }
